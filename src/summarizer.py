@@ -8,9 +8,9 @@ kernel = sk.Kernel()
 
 # Prepare OpenAI service using credentials stored in the `.env` file
 api_key, org_id = sk.openai_settings_from_dot_env()
-kernel.add_text_completion_service("dv", OpenAIChatCompletion("gpt-4", api_key, org_id))
+kernel.add_text_completion_service("dv", OpenAIChatCompletion("gpt-3.5-turbo", api_key, org_id))
 
-with open(Path.cwd() / "src" / "order_big.txt") as f:
+with open(Path.cwd() /  "order_big.txt") as f:
     order = f.read()
     f.seek(0)
     order_lines = f.readlines()
@@ -31,8 +31,8 @@ prompt_examples = """List:
 2 x orange
 1 x apple
 3 x fish
-1 x apple
-1 x apple
+2 x apple
+2 x apple
 3 x duck
 1 x apple
 
@@ -43,14 +43,14 @@ First, lets convert each row into JSON.
     "orange": 2,
     "apple" 1,
     "fish": 3,
-    "apple": 1,
-    "apple": 1,
+    "apple": 2,
+    "apple": 2,
     "duck": 3,
     "apple": 1
 }
 
 Second, let's add all the counts together.
-apple = 1+1+1+1+1
+apple = 1+1+2+2+1 = 7
 orange = 2
 fish = 3
 duck = 3
