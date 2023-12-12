@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
-input_filename = "book-recommendation-input-3.mp3"
+input_filename = "sample-1.mp3"
 
 with open(Path.cwd()/input_filename,"rb") as audio_file:
   transcript = openai.Audio.transcribe(
