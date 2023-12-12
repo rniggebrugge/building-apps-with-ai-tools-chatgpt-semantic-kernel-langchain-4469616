@@ -6,7 +6,7 @@ import openai
 from dotenv import load_dotenv
 load_dotenv()
 openai.api_key = os.getenv('OPENAI_API_KEY')
-with open(Path.cwd() / "src" / "03_06.mp3", "rb") as audio_file:
+with open(Path.cwd()  / "book-recommendation-input-3.mp3", "rb") as audio_file:
     transcript = openai.Audio.transcribe("whisper-1", audio_file).text
 
 
@@ -15,7 +15,7 @@ kernel = sk.Kernel()
 # Prepare OpenAI service using credentials stored in the `.env` file
 api_key, org_id = sk.openai_settings_from_dot_env()
 kernel.add_text_completion_service(
-    "dv", OpenAIChatCompletion("gpt-4", api_key, org_id))
+    "dv", OpenAIChatCompletion("gpt-3.5-turbo", api_key, org_id))
 
 base_prompt = "You are a librarian." +\
     "Provide a recommendation to a book based on the following information. {{$input}}." +\
